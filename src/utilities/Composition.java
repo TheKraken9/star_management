@@ -8,18 +8,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+/**
+ * The type Composition.
+ */
 public class Composition {
-
-    private String[] list = new String[5];
     private String idComposition;
     private String idComponent;
     private String idProduct;
     private String idUnit;
     private double componentQuantity;
 
+    /**
+     * Instantiates a new Composition.
+     */
     public Composition() {
     }
 
+    /**
+     * Instantiates a new Composition.
+     *
+     * @param idComposition     the id composition
+     * @param idComponent       the id component
+     * @param idProduct         the id product
+     * @param idUnit            the id unit
+     * @param componentQuantity the component quantity
+     */
     public Composition(String idComposition, String idComponent, String idProduct, String idUnit, double componentQuantity) {
         this.idComposition = idComposition;
         this.idComponent = idComponent;
@@ -28,46 +41,103 @@ public class Composition {
         this.componentQuantity = componentQuantity;
     }
 
+    /**
+     * Sets id composition.
+     *
+     * @param idComposition the id composition
+     */
     public void setIdComposition(String idComposition) {
         this.idComposition = idComposition;
     }
 
+    /**
+     * Sets id component.
+     *
+     * @param idComponent the id component
+     */
     public void setIdComponent(String idComponent) {
         this.idComponent = idComponent;
     }
 
+    /**
+     * Sets id product.
+     *
+     * @param idProduct the id product
+     */
     public void setIdProduct(String idProduct) {
         this.idProduct = idProduct;
     }
 
+    /**
+     * Sets id unit.
+     *
+     * @param idUnit the id unit
+     */
     public void setIdUnit(String idUnit) {
         this.idUnit = idUnit;
     }
 
+    /**
+     * Sets component quantity.
+     *
+     * @param componentQuantity the component quantity
+     */
     public void setComponentQuantity(double componentQuantity) {
         this.componentQuantity = componentQuantity;
     }
 
+    /**
+     * Gets id composition.
+     *
+     * @return the id composition
+     */
     public String getIdComposition() {
         return idComposition;
     }
 
+    /**
+     * Gets id component.
+     *
+     * @return the id component
+     */
     public String getIdComponent() {
         return idComponent;
     }
 
+    /**
+     * Gets id product.
+     *
+     * @return the id product
+     */
     public String getIdProduct() {
         return idProduct;
     }
 
+    /**
+     * Gets id unit.
+     *
+     * @return the id unit
+     */
     public String getIdUnit() {
         return idUnit;
     }
 
+    /**
+     * Gets component quantity.
+     *
+     * @return the component quantity
+     */
     public double getComponentQuantity() {
         return componentQuantity;
     }
 
+    /**
+     * Gets all products. Includes these components
+     *
+     * @param co the connection of database
+     * @return the all products
+     * @throws Exception the exception
+     */
     public Vector<String> getAllProducts(Connection co) throws Exception {
         Vector<String> allProducts = new Vector<>();
         try{
@@ -76,7 +146,6 @@ public class Composition {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 allProducts.add(resultSet.getString("idUnit"));
-                //System.out.println(resultSet.getString("idUnit"));
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -84,6 +153,13 @@ public class Composition {
         return allProducts;
     }
 
+    /**
+     * Gets all under compositions. A specific product and his components. *
+     * @param idUnit the id unit
+     * @param co     the connection of database
+     * @return the all under compositions
+     * @throws Exception the exception
+     */
     public double getAllUnderCompositions(String idUnit, Connection co) throws Exception {
         double price = 0;
         try{
@@ -96,7 +172,6 @@ public class Composition {
                 } else {
                     price += resultSet.getDouble("price")*resultSet.getDouble("quantity");
                 }
-                //System.out.println(resultSet.getString("idProduct") + resultSet.getDouble("price") + resultSet.getDouble("quantity"));
             }
         }catch (Exception error) {
             error.printStackTrace();
@@ -104,6 +179,12 @@ public class Composition {
         return price;
     }
 
+    /**
+     * Gets all sub compositions.
+     *
+     * @param co the connection of database
+     * @throws Exception the exception
+     */
     public void getAllSubCompositions(Connection co) throws Exception {
         Vector<String> allProduct = this.getAllProducts(co);
         double prixderevient = 0;
@@ -114,6 +195,15 @@ public class Composition {
         }
     }
 
+    /**
+     * Gets price of the subcomponent of one product using 'start with' by oracle
+     *
+     * @param idUnit    the id unit
+     * @param idProduct the id product
+     * @param co        the connection of database
+     * @return the price
+     * @throws Exception the exception
+     */
     public double getPrice(String idUnit , String idProduct, Connection co) throws Exception {
         double price = 0;
         try {
@@ -146,29 +236,6 @@ public class Composition {
             error.printStackTrace();
         }
         return price;
-    }
-
-    public Vector<Composition> getAllCompositions(Connection co) throws Exception {
-
-        Vector<Composition> comps;
-        try {
-            String sql = "";
-            co = Connecting.connectToOracle();
-            Statement stmt = co.createStatement();
-            comps = new Vector<Composition>();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM LISTTREE");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Hierarchie"));
-                System.out.println(resultSet.getInt("niveau"));
-                System.out.println(resultSet.getDouble("price"));
-                System.out.println(resultSet.getDouble("componentquantity"));
-
-            }
-        } catch (SQLException e) {
-            System.out.println("tsy mety");
-            throw new RuntimeException(e);
-        }
-        return comps;
     }
 
 }
