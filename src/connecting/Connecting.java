@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * The type Connecting.
+ */
 public class Connecting {
     private String username;
     private String password;
@@ -22,6 +25,12 @@ public class Connecting {
         return co;
     }
 
+    /**
+     * Connect to oracle connection.
+     *
+     * @return the connection
+     * @throws SQLException the sql exception
+     */
     public static Connection connectToOracle() throws SQLException {
         Connection co;
         Connecting con = new Connecting("scott","tiger","1521");

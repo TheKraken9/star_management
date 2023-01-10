@@ -1,7 +1,5 @@
 package utilities;
 
-import connecting.Connecting;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -136,9 +134,9 @@ public class Composition {
      *
      * @param co the connection of database
      * @return the all products
-     * @throws Exception the exception
+     * @throws SQLException the sql exception
      */
-    public Vector<String> getAllProducts(Connection co) throws Exception {
+    public Vector<String> getAllProducts(Connection co) throws SQLException {
         Vector<String> allProducts = new Vector<>();
         try{
             String sql = "select * from firstlist";
@@ -155,12 +153,13 @@ public class Composition {
 
     /**
      * Gets all under compositions. A specific product and his components. *
+     *
      * @param idUnit the id unit
      * @param co     the connection of database
      * @return the all under compositions
-     * @throws Exception the exception
+     * @throws SQLException the sql exception
      */
-    public double getAllUnderCompositions(String idUnit, Connection co) throws Exception {
+    public double getAllUnderCompositions(String idUnit, Connection co) throws SQLException {
         double price = 0;
         try{
             String sql = "select * from listtree where idUnit ='"+ idUnit +"' and niveau = 2";
@@ -183,9 +182,9 @@ public class Composition {
      * Gets all sub compositions.
      *
      * @param co the connection of database
-     * @throws Exception the exception
+     * @throws SQLException the sql exception
      */
-    public void getAllSubCompositions(Connection co) throws Exception {
+    public void getAllSubCompositions(Connection co) throws SQLException {
         Vector<String> allProduct = this.getAllProducts(co);
         double prixderevient = 0;
         for (int i = 0; i < allProduct.size(); i++) {
@@ -202,9 +201,9 @@ public class Composition {
      * @param idProduct the id product
      * @param co        the connection of database
      * @return the price
-     * @throws Exception the exception
+     * @throws SQLException the sql exception
      */
-    public double getPrice(String idUnit , String idProduct, Connection co) throws Exception {
+    public double getPrice(String idUnit , String idProduct, Connection co) throws SQLException {
         double price = 0;
         try {
             String sql = "SELECT C2.nameComponent as Hierarchie, " +

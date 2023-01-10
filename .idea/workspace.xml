@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4a19e075-40af-461c-8b0b-0b9e5d84d361" name="Changes" comment="add some comments, params and delete some comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connecting/Connecting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connecting/Connecting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Composition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +74,7 @@
       <workItem from="1673070134925" duration="1599000" />
       <workItem from="1673072157066" duration="2080000" />
       <workItem from="1673150443472" duration="9081000" />
-      <workItem from="1673331968921" duration="1685000" />
+      <workItem from="1673331968921" duration="2116000" />
     </task>
     <task id="LOCAL-00001" summary="this is the first commit">
       <created>1673332025372</created>
